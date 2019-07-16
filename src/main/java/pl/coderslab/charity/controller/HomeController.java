@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
 
 import java.util.List;
@@ -17,9 +18,22 @@ public class HomeController {
     @Autowired
     InstitutionRepository institutionRepository;
 
+    @Autowired
+    DonationRepository donationRepository;
+
     @ModelAttribute("institutions")
     public List<Institution> institutions() {
         return institutionRepository.findAll();
+    }
+
+    @ModelAttribute("sumDonations")
+    public int allDonation() {
+        return donationRepository.sumDonation();
+    }
+
+    @ModelAttribute("countOfInstitutionsDonated")
+    public int donatedInstitutions() {
+        return donationRepository.countDistinctByInstitution();
     }
 
 
