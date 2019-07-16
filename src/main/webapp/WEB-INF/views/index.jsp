@@ -98,29 +98,24 @@
 
         <ul class="help--slides-items">
             <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                </div>
 
+            <c:forEach items="${institutions}" var="ins" begin="0" step="2">
                 <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
+                    <div class="title">${ins.name}</div>
+                    <div class="subtitle">Cel i misja: ${ins.description}</div>
                 </div>
+            </c:forEach> <br />
             </li>
 
             <li>
+                <c:forEach items="${institutions}" var="ins" begin="1" step="2">
                 <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
+                    <div class="title">${ins.name}</div>
+                    <div class="subtitle">Cel i misja: ${ins.description}</div>
                 </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
+                </c:forEach> <br />
 
             </li>
-
         </ul>
     </div>
 
