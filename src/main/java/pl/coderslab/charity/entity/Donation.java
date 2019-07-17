@@ -34,6 +34,8 @@ public class Donation {
 
     private String pickUpComment;
 
+    private String telephoneNumber;
+
     public Long getId() {
         return id;
     }
@@ -112,5 +114,13 @@ public class Donation {
 
     public void setPickUpComment(String pickUpComment) {
         this.pickUpComment = pickUpComment;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
     }
 }
