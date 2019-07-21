@@ -114,7 +114,7 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba 60l worków:
-                <form:input path="quantity"/>
+                <form:input path="quantity" id="quantity"/>
                 <!-- TO DO walidacja ilości-->
                 <form:hidden path="id"/>
               </label>
@@ -225,9 +225,8 @@
                 <ul>
                   <li>
                     <span class="icon icon-bag"></span>
-                    <span class="summary--text"
-                      >4 worki ubrań w dobrym stanie dla dzieci</span
-                    >
+                    <span class="summary--text" id="quantitySum"></span>
+                      <span worki ubrań w dobrym stanie dla dzieci></span>
                   </li>
 
                   <li>
