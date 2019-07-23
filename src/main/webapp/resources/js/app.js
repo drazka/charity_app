@@ -168,7 +168,8 @@ document.addEventListener("DOMContentLoaded", function() {
         let quantityIn = document.getElementById("quantity").value;
         document.getElementById("quantitySum").innerHTML = quantityIn;
 
-        let orgChoosen = document.querySelector('input[name="organization"]:checked').value;
+        let orgChoosen = document.querySelector('input[name="institution"]:checked').value;
+        console.log(orgChoosen);
         document.getElementById("institution").innerHTML = orgChoosen;
 
         let streetIn = document.getElementById("streetIn").value;

@@ -80,12 +80,12 @@
       <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form:form modelAttribute="donation" action="form-confirmation.jsp" method="post">
+        <form:form modelAttribute="donation" action="/donation" method="post">
 
           <!-- STEP 1: class .active is switching steps -->
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
-
+            <!-- TO DO save category -->
         <c:forEach items="${categories}" var="category">
             <div class="form-group form-group--checkbox">
               <label>
@@ -136,7 +136,7 @@
             <div class="form-group form-group--checkbox">
               <c:forEach items="${institutions}" var="institution">
                 <label>
-                  <input type="radio" name="organization" class="institutionName" value="${institution.name}"/>
+                  <form:radiobutton path="institution" value="${institution}"/>
                   <span class="checkbox radio"></span>
                   <span class="description">
                   <div class="title">${institution.name}</div>

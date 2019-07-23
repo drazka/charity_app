@@ -96,25 +96,18 @@
             Możesz sprawdzić czym się zajmują.</p>
 
         <ul class="help--slides-items">
+                <c:forEach items="${institutions}" var="institution" varStatus="theCount" step="2">
             <li>
-
-            <c:forEach items="${institutions}" var="ins" begin="0" step="2">
                 <div class="col">
-                    <div class="title">${ins.name}</div>
-                    <div class="subtitle">Cel i misja: ${ins.description}</div>
+                    <div class="title">${institutions[theCount.index].name}</div>
+                    <div class="subtitle">${institutions[theCount.index].description}</div>
                 </div>
-            </c:forEach> <br />
-            </li>
-
-            <li>
-                <c:forEach items="${institutions}" var="ins" begin="1" step="2">
                 <div class="col">
-                    <div class="title">${ins.name}</div>
-                    <div class="subtitle">Cel i misja: ${ins.description}</div>
+                    <div class="title">${institutions[theCount.index+1].name}</div>
+                    <div class="subtitle">${institutions[theCount.index+1].description}</div>
                 </div>
-                </c:forEach> <br />
-
             </li>
+            </c:forEach>
         </ul>
     </div>
 
