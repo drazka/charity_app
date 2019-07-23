@@ -148,24 +148,49 @@ document.addEventListener("DOMContentLoaded", function() {
      * Show next or previous section etc.
      */
     updateForm() {
-      this.$step.innerText = this.currentStep;
+        this.$step.innerText = this.currentStep;
 
-      // TODO: Validation
+        // TODO: Validation
 
-      this.slides.forEach(slide => {
-        slide.classList.remove("active");
+        this.slides.forEach(slide => {
+            slide.classList.remove("active");
 
-        if (slide.dataset.step == this.currentStep) {
-          slide.classList.add("active");
-        }
-      });
+            if (slide.dataset.step == this.currentStep) {
+                slide.classList.add("active");
+            }
+        });
 
-      this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
-      this.$step.parentElement.hidden = this.currentStep >= 5;
+        this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
+        this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
-        var quantityIn = document.getElementById("quantity").value;
+
+        // TODO: get data from inputs and show them in summary
+        let quantityIn = document.getElementById("quantity").value;
         document.getElementById("quantitySum").innerHTML = quantityIn;
+
+        let orgChoosen = document.querySelector('input[name="organization"]:checked').value;
+        document.getElementById("institution").innerHTML = orgChoosen;
+
+        let streetIn = document.getElementById("streetIn").value;
+        document.getElementById("street").innerHTML = streetIn;
+
+        let cityIn = document.getElementById("cityIn").value;
+        document.getElementById("city").innerHTML = cityIn;
+
+        let zipCodeIn = document.getElementById("zipCodeIn").value;
+        document.getElementById("zipCode").innerHTML = zipCodeIn;
+
+        let phoneIn = document.getElementById("phoneIn").value;
+        document.getElementById("phone").innerHTML = phoneIn;
+
+        let pickUpDateIn = document.getElementById("pickUpDateIn").value;
+        document.getElementById("pickUpDate").innerHTML = pickUpDateIn;
+
+        let pickUpTimeIn = document.getElementById("pickUpTimeIn").value;
+        document.getElementById("pickUpTime").innerHTML = pickUpTimeIn;
+
+        let commentIn = document.getElementById("commentIn").value;
+        document.getElementById("comment").innerHTML = commentIn;
 
     }
 
