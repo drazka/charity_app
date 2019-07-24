@@ -28,7 +28,7 @@
     </div>
 </header>
 
-<section class="stats">
+<section id="start" class="stats">
     <div class="container container--85">
         <div class="stats--item">
             <em>${sumDonations}</em>
@@ -47,7 +47,7 @@
     </div>
 </section>
 
-<section class="steps">
+<section id="information" class="steps">
     <h2>Wystarczą 4 proste kroki</h2>
 
     <div class="steps--container">
@@ -76,7 +76,7 @@
     <a href="#" class="btn btn--large">Załóż konto</a>
 </section>
 
-<section class="about-us">
+<section id="about" class="about-us">
     <div class="about-us--text">
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
@@ -87,7 +87,7 @@
     </div>
 </section>
 
-<section class="help">
+<section id="help" class="help">
     <h2>Komu pomagamy?</h2>
 
     <!-- SLIDE 1 -->

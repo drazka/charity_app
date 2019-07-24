@@ -86,14 +86,14 @@
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
             <!-- TO DO save category -->
+
         <c:forEach items="${categories}" var="category">
             <div class="form-group form-group--checkbox">
               <label>
-                <input
-                  type="checkbox"
-                  name="categories"
-                  value="${category.id}"
-                />
+                <form:checkbox
+                        path="categories"
+                        value="${category}"
+                        />
                 <span class="checkbox"></span>
                 <span class="description"
                   >${category.name}</span
@@ -101,6 +101,7 @@
               </label>
             </div>
         </c:forEach> <br />
+
 
             <div class="form-group form-group--buttons">
               <button type="button" class="btn next-step">Dalej</button>
@@ -223,13 +224,14 @@
 
             <div class="summary">
               <div class="form-section">
+                <!-- TO DO nazwa kategorii do oddania-->
                 <h4>Oddajesz:</h4>
                 <ul>
                   <li>
                     <span class="icon icon-bag"></span>
                       <span class="summary--text" id="quantitySum"> </span>
                   </li>
-
+                  <!-- TO DO nazwa organizacji-->
                   <li>
                     <span class="icon icon-hand"></span>
                     <span class="summary--text" id="institution">
