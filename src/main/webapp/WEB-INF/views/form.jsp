@@ -85,7 +85,7 @@
           <!-- STEP 1: class .active is switching steps -->
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
-            <!-- TO DO save category -->
+            <!-- TO DO brak zaznaczenia wybranego pola -->
 
         <c:forEach items="${categories}" var="category">
             <div class="form-group form-group--checkbox">
