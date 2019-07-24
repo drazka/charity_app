@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
-
+<!-- TODO layout-->
 <!DOCTYPE html>
 <html lang="pl">
   <head>
@@ -35,7 +35,9 @@
             Oddaj rzeczy, których już nie chcesz<br />
             <span class="uppercase">potrzebującym</span>
           </h1>
-
+        </div>
+      </div>
+    <section>
           <div class="slogan--steps">
             <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
             <ul class="slogan--steps-boxes">
@@ -53,8 +55,7 @@
               </li>
             </ul>
           </div>
-        </div>
-      </div>
+    </section>
     </header>
 
     <section class="form--steps">

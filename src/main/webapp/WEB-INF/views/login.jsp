@@ -9,34 +9,32 @@
     <%@ include file="/WEB-INF/views/commons/style.jsp" %>
   </head>
   <body>
-    <header>
-      <nav class="container container--70">
-        <ul class="nav--actions">
-          <li><a href="#">Zaloguj</a></li>
-          <li class="highlighted"><a href="#">Załóż konto</a></li>
-        </ul>
+  <header>
+  <%@ include file="/WEB-INF/views/commons/header.jsp" %>
+  </header>
 
-        <%@ include file="/WEB-INF/views/commons/header.jsp" %>
-      </nav>
-    </header>
-
-    <section class="login-page">
+      <section class="login-page">
       <h2>Zaloguj się</h2>
-      <form>
-        <div class="form-group">
-          <input type="email" name="email" placeholder="Email" />
-        </div>
-        <div class="form-group">
-          <input type="password" name="password" placeholder="Hasło" />
-          <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+
+      <form method="POST">
+        <div class="form-group" ${error != null ? 'has-error' : ''}">
+        <span>${message}</span>
+        <input name="username" type="text" class="form-control" placeholder="Username"
+               autofocus="true"/>
+        <input name="password" type="password" class="form-control" placeholder="Password"/>
+        <span>${error}</span>
+        <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+
         </div>
 
         <div class="form-group form-group--buttons">
-          <a href="#" class="btn btn--without-border">Załóż konto</a>      
-          <button class="btn" type="submit">Zaloguj się</button> 
+          <a href="/register" class="btn btnWhite">Załóż konto</a>
+          <button class="btn btnWhite" type="submit">Zaloguj się</button>
         </div>
       </form>
-    </section>
+      </section>
 
     <%@ include file="/WEB-INF/views/commons/footer.jsp" %>
   </body>

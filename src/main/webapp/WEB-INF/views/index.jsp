@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -9,23 +10,7 @@
 </head>
 <body>
 <header class="header--main-page">
-    <nav class="container container--70">
-        <ul class="nav--actions">
-            <li><a href="" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-        </ul>
-
-        <%@ include file="/WEB-INF/views/commons/header.jsp" %>
-    </nav>
-
-    <div class="slogan container container--90">
-        <div class="slogan--item">
-            <h1>
-                Zacznij pomagać!<br/>
-                Oddaj niechciane rzeczy w zaufane ręce
-            </h1>
-        </div>
-    </div>
+<%@ include file="/WEB-INF/views/commons/header.jsp" %>
 </header>
 
 <section id="start" class="stats">
