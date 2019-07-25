@@ -1,6 +1,9 @@
 package pl.coderslab.charity.entity;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -15,6 +18,8 @@ public class User {
 
     private String lastName;
 
+    @NotEmpty
+    @UniqueElements
     private String username;
 
     private String email;
@@ -26,6 +31,8 @@ public class User {
 
     @ManyToMany
     private Set<Role> roles;
+
+    private int enabled;
 
     public Long getId() {
         return id;
@@ -89,5 +96,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
     }
 }
