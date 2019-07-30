@@ -44,4 +44,7 @@ public class UserController {
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/donation"; }
 
+    @GetMapping("/admin")
+    public String adminPageShow() {
+        return "admin"; }
 }

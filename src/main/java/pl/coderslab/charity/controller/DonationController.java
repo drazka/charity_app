@@ -1,6 +1,5 @@
 package pl.coderslab.charity.controller;
 
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,9 +52,6 @@ public class DonationController {
         if (result.hasErrors()) {
             return "form";
         }
-//        System.out.println("-------------------------");
-//        System.out.println(donation.getInstitution());
-//        System.out.println("-------------------------");
         donation.getCategories().forEach(c->c.getDonations().add(donation));
         donationRepository.save(donation);
         return "form-confirmation";
