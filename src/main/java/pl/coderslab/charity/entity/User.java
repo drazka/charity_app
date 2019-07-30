@@ -104,4 +104,17 @@ public class User {
     public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
+
+    public User(String firstName, String lastName, @NotEmpty String username, String email, String password, String passwordConfirm, Set<Role> roles, int enabled) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.passwordConfirm = passwordConfirm;
+        this.roles = roles;
+        this.enabled = enabled;
+    }
+
+    public User(){};
 }
