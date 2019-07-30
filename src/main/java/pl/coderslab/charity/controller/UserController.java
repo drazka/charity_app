@@ -42,6 +42,6 @@ public class UserController {
 
         userService.save(userForm);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-        return "redirect:/createTeam"; }
+        return "redirect:/donation"; }
 
 }

@@ -34,16 +34,9 @@
         </ul>
 
         <%@ include file="/WEB-INF/views/commons/header.jsp" %>
+
       </nav>
 
-      <div class="slogan container container--90">
-        <div class="slogan--item">
-          <h1>
-            Oddaj rzeczy, których już nie chcesz<br />
-            <span class="uppercase">potrzebującym</span>
-          </h1>
-        </div>
-      </div>
     <section>
           <div class="slogan--steps">
             <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>

@@ -13,13 +13,6 @@ import pl.coderslab.charity.service.SpringDataUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    public void configure (AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1").password("{noop}user123").roles("USER")
-                .and()
-                .withUser("admin1").password("{noop}admin123").roles("ADMIN");
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -41,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public SpringDataUserDetailsService customUserDetailsSevice() {
+    public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
     }
 
@@ -50,4 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return authenticationManager();
     }
 
+    @Override
+    public void configure (AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService())
+                .passwordEncoder(passwordEncoder());
+
+    }
 }
