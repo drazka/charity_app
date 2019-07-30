@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
+
     @GetMapping("/login")
     public String loginPageShow(Model model, String error, String logout) {
         if (error != null)
