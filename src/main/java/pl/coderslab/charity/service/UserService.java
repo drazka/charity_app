@@ -4,5 +4,6 @@ import pl.coderslab.charity.entity.User;
 
 public interface UserService {
     User findByUsername(String username);
-    void saveUser(User user);
+
+    void save(User user);
 }

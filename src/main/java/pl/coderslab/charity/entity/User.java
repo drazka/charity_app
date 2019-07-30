@@ -19,7 +19,6 @@ public class User {
     private String lastName;
 
     @NotEmpty
-    @UniqueElements
     private String username;
 
     private String email;
