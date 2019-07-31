@@ -47,6 +47,7 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
+                                    <th>Nr</th>
                                     <th>Nazwa</th>
                                     <th>Opis</th>
                                     <th>Edycja</th>
@@ -56,6 +57,7 @@
                                 </thead>
                                 <tfoot>
                                 <tr>
+                                    <th>Nr</th>
                                     <th>Nazwa</th>
                                     <th>Opis</th>
                                     <th>Edycja</th>
@@ -64,12 +66,15 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
+                                <c:forEach items="${institutions}" var="institution" varStatus="theCount">
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td><a href="/" >Edytuj</a></td>
-                                    <td><a href="/" >Usuń</a></td>
+                                    <th scope="row">${theCount.count}</th>
+                                    <td>${institution.name}</td>
+                                    <td>${institution.description}</td>
+                                    <td><a href="/admin/institution/edit/${institution.id}" >Edytuj</a></td>
+                                    <td><a href="/admin/institution/delete/${institution.id}" >Usuń</a></td>
                                 </tr>
+                                </c:forEach> <br />
                                 </tbody>
                             </table>
                         </div>
