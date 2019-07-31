@@ -41,9 +41,9 @@
                         <form:input path="name" type="text" class="form-control" id="inputName" placeholder="nazwa"/>
                         <label for="inputDescription">Opis</label>
                         <form:input path="description" type="text" class="form-control" id="inputDescription" placeholder="opis"/>
-                        <form:hidden path="id"/>
+                        <form:hidden name="institutionId" path="id"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                    <button type="submit" class="btn btn-primary">Zapisz</button>
                 </form:form>
 
 

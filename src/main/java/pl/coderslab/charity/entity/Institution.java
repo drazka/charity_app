@@ -37,4 +37,13 @@ public class Institution {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Institution(Long id, String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+    }
+
+    public Institution() {};
 }
+

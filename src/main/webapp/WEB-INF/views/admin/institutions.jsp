@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <!DOCTYPE html>
@@ -72,7 +72,22 @@
                                     <td>${institution.name}</td>
                                     <td>${institution.description}</td>
                                     <td><a href="/admin/institution/edit/${institution.id}" >Edytuj</a></td>
-                                    <td><a href="/admin/institution/delete/${institution.id}" >Usuń</a></td>
+
+                                     <!-- Nav Item - Alerts -->
+                                    <td class="nav-item dropdown no-arrow mx-1">
+                                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <!-- Counter - Alerts -->
+                                            Usuń </a>
+                                    <!-- Dropdown - Alerts -->
+                                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                        <h6 class="font-weight-bold">
+                                            Czy na pewno chcesz usunąć Instytucję?
+                                        </h6>
+                                        <a href="/admin/institution/delete/${institution.id}">
+                                        <span style="font-size: large" class="badge badge-danger badge-counter align-content-lg-center">TAK</span>
+                                        </a>
+                                    </div>
+                                    </td>
                                 </tr>
                                 </c:forEach> <br />
                                 </tbody>
