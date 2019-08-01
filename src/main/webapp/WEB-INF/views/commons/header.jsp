@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <nav class="container container--70">
     <c:if test="${pageContext.request.userPrincipal.name == null}">
@@ -21,9 +22,13 @@
         <ul>
             <li><a href="/#start" class="btn btn--without-border active">Start</a></li>
             <li><a href="/#information" class="btn btn--without-border">O co chodzi?</a></li>
+            <li><a href="/donation" class="btn btn--without-border">Oddaj niepotrzebne rzeczy</a></li>
             <li><a href="/#about" class="btn btn--without-border">O nas</a></li>
             <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
             <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <sec:authorize access="hasRole('ADMIN')">
+                <li><a href="/admin/" class="btn btn--without-border">Strona Administratora</a></li>
+            </sec:authorize>
         </ul>
     </c:if>
 </nav>
