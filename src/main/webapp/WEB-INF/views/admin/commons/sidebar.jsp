@@ -101,6 +101,11 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Instytucje</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/users">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Users</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

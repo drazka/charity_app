@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.repository.UserRepository;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,10 +20,20 @@ public class AdminController {
     @Autowired
     InstitutionRepository institutionRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @ModelAttribute("institutions")
     public List<Institution> institutions() {
         return institutionRepository.findAll();
     }
+
+    @ModelAttribute("users")
+    public List<User> users() { return userRepository.findAll(); }
+
+    @ModelAttribute("admins")
+    public List<User> admins() { return userRepository.findAll(); }
+
 
     @GetMapping("/")
     public String adminPageShow() {
@@ -33,10 +45,12 @@ public class AdminController {
         return "admin/institutions";
     }
 
-    @PostMapping("/institutions")
-    public String deletePageShow() {
-        return "admin/institutions/1";
-    }
+//    @PostMapping("/institutions")
+//    public String deletePageShow() {
+//        return "admin/institutions/1";
+//    }
+
+    //------INSTITUTIONS--------------
 
     @GetMapping("/institution/add")
     public String insAdd(Model model) {
@@ -77,5 +91,57 @@ public class AdminController {
         return "redirect:/admin/institutions";
     }
 
+    //---------------USERS------------------
+
+    @GetMapping("/users")
+    public String allUsersPageShow() {
+        return "admin/users";
+    }
+
+    @GetMapping("/user/add")
+    public String userAdd(Model model) {
+        model.addAttribute("user", new User());
+        return "admin/userF";
+    }
+
+    @PostMapping("/user/add")
+    public String userAddPost(@ModelAttribute @Valid User user,
+                             BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/userF";
+        }
+        userRepository.save(user);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/user/edit/{id}")
+    public String userEdit(@PathVariable long id, Model model) {
+        model.addAttribute("user", userRepository.findById(id));
+        return "admin/userF";
+    }
+
+    @PostMapping("/user/edit/{id}")
+    public String userEditPost(@ModelAttribute @Valid User user,
+                              BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/userF";
+        }
+        userRepository.save(user);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String userDelete(@PathVariable long id) {
+        User user = userRepository.findById(id).get();
+        userRepository.delete(user);
+        return "redirect:/admin/users";
+    }
+
+    //---------------ADMINS------------------
+
+    @GetMapping("/admins")
+    public String allAdminsPageShow() {
+        return "admin/admins";
+    }
 
 }
