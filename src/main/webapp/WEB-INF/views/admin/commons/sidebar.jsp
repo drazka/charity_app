@@ -104,7 +104,12 @@
     <li class="nav-item">
         <a class="nav-link" href="/admin/users">
             <i class="fas fa-fw fa-table"></i>
-            <span>Users</span></a>
+            <span>Użytkownicy</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin/admins">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Administratorzy</span></a>
     </li>
 
     <!-- Divider -->

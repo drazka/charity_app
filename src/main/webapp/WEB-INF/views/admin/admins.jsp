@@ -32,13 +32,13 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Administratorzy</h1>
+                <h1 class="h3 mb-2 text-gray-800">Administatorzy</h1>
 
                 <!-- DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the https://datatables.net -->
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h5 class="m-0 font-weight-bold text-primary"><a href="/admin/institution/add"> Dodaj nową instytucję</a></h5>
+                        <h5 class="m-0 font-weight-bold text-primary"><a href="/admin/admin/add"> Dodaj Administratora</a></h5>
 
 
                     </div>
@@ -48,8 +48,11 @@
                                 <thead>
                                 <tr>
                                     <th>Nr</th>
-                                    <th>Nazwa</th>
-                                    <th>Opis</th>
+                                    <th>Imię</th>
+                                    <th>Nazwisko</th>
+                                    <th>email</th>
+                                    <th>login</th>
+                                    <th>status</th>
                                     <th>Edycja</th>
                                     <th>Usunięcie</th>
 
@@ -58,20 +61,26 @@
                                 <tfoot>
                                 <tr>
                                     <th>Nr</th>
-                                    <th>Nazwa</th>
-                                    <th>Opis</th>
+                                    <th>Imię</th>
+                                    <th>Nazwisko</th>
+                                    <th>email</th>
+                                    <th>login</th>
+                                    <th>status</th>
                                     <th>Edycja</th>
                                     <th>Usunięcie</th>
 
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <c:forEach items="${institutions}" var="institution" varStatus="theCount">
+                                <c:forEach items="${admins}" var="user" varStatus="theCount">
                                     <tr>
                                         <th scope="row">${theCount.count}</th>
-                                        <td>${institution.name}</td>
-                                        <td>${institution.description}</td>
-                                        <td><a href="/admin/institution/edit/${institution.id}" >Edytuj</a></td>
+                                        <td>${user.firstName}</td>
+                                        <td>${user.lastName}</td>
+                                        <td>${user.email}</td>
+                                        <td>${user.username}</td>
+                                        <td>${user.enabled}</td>
+                                        <td><a href="/admin/user/edit/${user.id}" >Edytuj</a></td>
 
                                         <!-- Nav Item - Alerts -->
                                         <td class="nav-item dropdown no-arrow mx-1">
@@ -81,9 +90,9 @@
                                             <!-- Dropdown - Alerts -->
                                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                                 <h6 class="font-weight-bold">
-                                                    Czy na pewno chcesz usunąć Instytucję?
+                                                    Czy na pewno chcesz usunąć użytkownika?
                                                 </h6>
-                                                <a href="/admin/institution/delete/${institution.id}">
+                                                <a href="/admin/user/delete/${user.id}">
                                                     <span style="font-size: large" class="badge badge-danger badge-counter align-content-lg-center">TAK</span>
                                                 </a>
                                             </div>

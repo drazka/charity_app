@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.InstitutionRepository;
+import pl.coderslab.charity.repository.RoleRepository;
 import pl.coderslab.charity.repository.UserRepository;
 
 import javax.validation.Valid;
@@ -23,6 +25,9 @@ public class AdminController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RoleRepository roleRepository;
+
     @ModelAttribute("institutions")
     public List<Institution> institutions() {
         return institutionRepository.findAll();
@@ -32,7 +37,9 @@ public class AdminController {
     public List<User> users() { return userRepository.findAll(); }
 
     @ModelAttribute("admins")
-    public List<User> admins() { return userRepository.findAll(); }
+    public List<User> admins() {
+        Role role = roleRepository.findById(2);
+        return userRepository.findUsersByRoles(role); }
 
 
     @GetMapping("/")
@@ -45,10 +52,6 @@ public class AdminController {
         return "admin/institutions";
     }
 
-//    @PostMapping("/institutions")
-//    public String deletePageShow() {
-//        return "admin/institutions/1";
-//    }
 
     //------INSTITUTIONS--------------
 
