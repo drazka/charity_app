@@ -53,6 +53,7 @@
                                     <th>email</th>
                                     <th>login</th>
                                     <th>status</th>
+                                    <th>role</th>
                                     <th>Edycja</th>
                                     <th>Usunięcie</th>
 
@@ -66,6 +67,7 @@
                                     <th>email</th>
                                     <th>login</th>
                                     <th>status</th>
+                                    <th>role</th>
                                     <th>Edycja</th>
                                     <th>Usunięcie</th>
 
@@ -80,6 +82,11 @@
                                         <td>${user.email}</td>
                                         <td>${user.username}</td>
                                         <td>${user.enabled}</td>
+                                        <td>
+                                            <c:forEach items="${user.roles}" var="role">
+                                                <li>${role.name}</li>
+                                            </c:forEach>
+                                        </td>
                                         <td><a href="/admin/user/edit/${user.id}" >Edytuj</a></td>
 
                                         <!-- Nav Item - Alerts -->

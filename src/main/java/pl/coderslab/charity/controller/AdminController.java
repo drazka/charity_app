@@ -36,6 +36,9 @@ public class AdminController {
     @ModelAttribute("users")
     public List<User> users() { return userRepository.findAll(); }
 
+    @ModelAttribute("roles")
+    public List<Role> roles() { return roleRepository.findAll(); }
+
     @ModelAttribute("admins")
     public List<User> admins() {
         Role role = roleRepository.findById(2);

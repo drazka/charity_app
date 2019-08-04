@@ -37,7 +37,7 @@
 
                 <form:form method="post" modelAttribute="user">
                     <div class="form-group">
-                        <form:hidden name="institutionId" path="id"/>
+                        <form:hidden name="userId" path="id"/>
 
                         <label for="inputFirstName">Imię</label>
                         <form:input path="firstName" type="text" class="form-control"
@@ -52,8 +52,27 @@
                         <form:input path="username" type="text" class="form-control"
                                     id="inputLogin" placeholder="Login"/>
                         <label for="inputStatus">Status (1=aktywny, 0 = nieaktywny)</label>
-                        <form:input path="enabled" type="text" class="form-control"
+                        <form:input path="enabled" type="number" class="form-control"
                                     id="inputStatus" placeholder="Status"/>
+                        <label for="inputRoles">Role</label>
+
+
+
+                        <c:forEach items="${roles}" var="role">
+                            <div>
+                                <label>
+                                    <form:checkbox id="inputRoles"
+                                            path="roles"
+                                            value="${role}"
+                                    />
+                                    <span class="checkbox"></span>
+                                    <span class="description"
+                                    >${role.name}</span
+                                    >
+                                </label>
+                            </div>
+                        </c:forEach> <br />
+
 
                     </div>
                     <button type="submit" class="btn btn-primary">Zapisz</button>

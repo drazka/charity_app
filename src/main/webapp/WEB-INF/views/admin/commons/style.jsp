@@ -6,7 +6,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2</title>
+<title>Admin</title>
 
 <!-- Custom fonts for this template-->
 <link rel="stylesheet" href="<c:url value="/resources/vendor/fontawesome-free/css/all.min.css"/>"/>
