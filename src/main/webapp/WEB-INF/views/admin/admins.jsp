@@ -38,7 +38,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h5 class="m-0 font-weight-bold text-primary"><a href="/admin/admin/add"> Dodaj Administratora</a></h5>
+                        <h5 class="m-0 font-weight-bold text-primary"><a href="/admin/user/add"> Dodaj Administratora</a></h5>
 
 
                     </div>

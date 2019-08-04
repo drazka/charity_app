@@ -19,6 +19,24 @@
         </ul>
     </c:if>
     <c:if test="${pageContext.request.userPrincipal.name != null}">
+        <ul class="nav--actions">
+            <li class="logged-user">
+                Witaj ${pageContext.request.userPrincipal.name}
+                <ul class="dropdown">
+                    <li><a href="/profil">Profil</a></li>
+                    <li><a href="#">Ustawienia</a></li>
+                    <li><a href="#">Moje zbiórki</a></li>
+                    <li>
+                        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
+                        <a onclick="document.forms['logoutForm']
+                  .submit()">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
         <ul>
             <li><a href="/#start" class="btn btn--without-border active">Start</a></li>
             <li><a href="/#information" class="btn btn--without-border">O co chodzi?</a></li>

@@ -55,9 +55,6 @@
                         <form:input path="enabled" type="number" class="form-control"
                                     id="inputStatus" placeholder="Status"/>
                         <label for="inputRoles">Role</label>
-
-
-
                         <c:forEach items="${roles}" var="role">
                             <div>
                                 <label>
@@ -72,7 +69,7 @@
                                 </label>
                             </div>
                         </c:forEach> <br />
-
+                        <form:hidden path="password" ></form:hidden>
 
                     </div>
                     <button type="submit" class="btn btn-primary">Zapisz</button>
