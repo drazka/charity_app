@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,10 @@ import java.util.List;
 
 @RequestMapping("/admin")
 @Controller
+@RequiredArgsConstructor
 public class AdminController {
 
-    @Autowired
-    InstitutionRepository institutionRepository;
+    private final InstitutionRepository institutionRepository;
 
     @Autowired
     UserRepository userRepository;

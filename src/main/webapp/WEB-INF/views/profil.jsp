@@ -52,7 +52,8 @@
                 <form:errors path="email"></form:errors>
             </div>
         </spring:bind>
-        <form:hidden path="password"></form:hidden>
+        <form:hidden name="userId" path="id"/>
+        <form:hidden path="password"/>
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Akceptuj zmiany</button>
             <a href="/password" class="btn">Zmień hasło</a>
