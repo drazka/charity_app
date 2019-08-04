@@ -36,33 +36,44 @@ public class UserController {
     @GetMapping("/register")
     public String registerPageShow(Model model) {
         model.addAttribute("userForm", new User());
-        return "register"; }
+        return "register";
+    }
 
     @PostMapping("/register")
     public String registerPagePost(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
-        if( bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "register";
         }
 
         userService.save(userForm);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-        return "redirect:/donation"; }
+        return "redirect:/donation";
+    }
 
     @GetMapping("/profil")
     public String profilPageShow(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         User entityUser = currentUser.getUser();
         model.addAttribute("user", entityUser);
-        return "profil"; }
+        return "profil";
+    }
 
     @PostMapping("/profil")
     public String profilPost(@ModelAttribute @Valid User user,
                              BindingResult result) {
         userValidator.validateUsername(user, result);
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "login";
         }
         userService.save(user);
-        return "index"; }
+        return "index";
+    }
 
+
+    @GetMapping("/password")
+    public String changePass(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        User entityUser = currentUser.getUser();
+        model.addAttribute("user", entityUser);
+        return "password";
+    }
 }

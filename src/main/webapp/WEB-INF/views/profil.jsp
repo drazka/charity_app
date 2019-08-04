@@ -55,7 +55,7 @@
         <form:hidden path="password"></form:hidden>
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Akceptuj zmiany</button>
-            <a href="/pass" class="btn">Zmień hasło</a>
+            <a href="/password" class="btn">Zmień hasło</a>
         </div>
     </form:form>
 </section>
