@@ -20,20 +20,23 @@
 <section class="login-page">
     <h2>Twoje dane</h2>
     <form:form method="POST" modelAttribute="user" class="bg-light p-5 contact-form">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <input type="password" id="oldPassword" placeholder="Stare Hasło" >
+            </div>
         <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="password" class="form-control" placeholder="Password"
-                            autofocus="true"></form:input>
+                <input type="password" class="form-control" placeholder="Nowe hasło">
                 <form:errors path="password"></form:errors>
             </div>
         </spring:bind>
         <spring:bind path="passwordConfirm">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="passwordConfirm" class="form-control" placeholder="Confirm your password"
+                <form:input type="text" path="passwordConfirm" class="form-control" placeholder="Powtórz nowe hasło"
                             autofocus="true"></form:input>
                 <form:errors path="passwordConfirm"></form:errors>
             </div>
         </spring:bind>
+        <form:hidden name="userId" path="id"/>
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Zmień hasło</button>
         </div>

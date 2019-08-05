@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +19,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class DonationController {
 
-    @Autowired
-    DonationRepository donationRepository;
+    private final DonationRepository donationRepository;
 
-    @Autowired
-    CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-    @Autowired
-    InstitutionRepository institutionRepository;
+    private final InstitutionRepository institutionRepository;
 
     @ModelAttribute("categories")
     public List <Category> getCategories() {

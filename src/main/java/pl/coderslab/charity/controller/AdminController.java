@@ -23,11 +23,9 @@ public class AdminController {
 
     private final InstitutionRepository institutionRepository;
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     @ModelAttribute("institutions")
     public List<Institution> institutions() {

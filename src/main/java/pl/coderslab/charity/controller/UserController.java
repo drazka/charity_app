@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,13 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    private UserValidator userValidator;
+    UserValidator userValidator;
 
     @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    private SecurityService securityService;
+    SecurityService securityService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -55,6 +56,8 @@ public class UserController {
     public String profilPageShow(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         User entityUser = currentUser.getUser();
         model.addAttribute("user", entityUser);
+        System.out.println(currentUser.getUser().getId());
+        System.out.println(entityUser.getId());
         return "profil";
     }
 
@@ -62,6 +65,8 @@ public class UserController {
     public String profilPost(@ModelAttribute @Valid User user,
                              BindingResult result) {
         userValidator.validateUsername(user, result);
+        System.out.println("-----------/profil-------------");
+        System.out.println(user.getId());;
         if (result.hasErrors()) {
             return "login";
         }
@@ -71,9 +76,21 @@ public class UserController {
 
 
     @GetMapping("/password")
-    public String changePass(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+    public String changePass(Model model,@AuthenticationPrincipal CurrentUser currentUser) {
         User entityUser = currentUser.getUser();
         model.addAttribute("user", entityUser);
         return "password";
+    }
+
+    @PostMapping("/password")
+    public String changePassPost(@ModelAttribute @Valid User user,
+                                 BindingResult result) {
+        userValidator.validatePassword(user, result);
+        if (result.hasErrors()) {
+            return "password";
+        }
+        userService.save(user);
+        return "index";
+
     }
 }

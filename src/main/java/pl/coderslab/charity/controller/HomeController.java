@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +16,12 @@ import java.util.List;
 
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
-    @Autowired
-    InstitutionRepository institutionRepository;
+    private final InstitutionRepository institutionRepository;
 
-    @Autowired
-    DonationRepository donationRepository;
+    private final DonationRepository donationRepository;
 
     @ModelAttribute("institutions")
     public List<Institution> institutions() {
