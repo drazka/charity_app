@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.CurrentUser;
 import pl.coderslab.charity.service.SecurityService;
@@ -84,8 +85,12 @@ public class UserController {
 
     @PostMapping("/password")
     public String changePassPost(@ModelAttribute @Valid User user,
-                                 BindingResult result) {
+                                 BindingResult result,
+                                 @RequestParam("oldPassword") String oldPassword) {
+        System.out.println("-----------/oldpass-------------");
+        System.out.println(oldPassword);
         userValidator.validatePassword(user, result);
+
         if (result.hasErrors()) {
             return "password";
         }
