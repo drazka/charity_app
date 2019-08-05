@@ -1,7 +1,6 @@
 package pl.coderslab.charity.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,20 +19,14 @@ import javax.validation.Valid;
 
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    UserValidator userValidator;
+    private final UserValidator userValidator;
 
-    @Autowired
     private final UserService userService;
 
-    @Autowired
-    SecurityService securityService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private final SecurityService securityService;
 
     @GetMapping("/register")
     public String registerPageShow(Model model) {

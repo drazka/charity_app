@@ -1,5 +1,6 @@
 package pl.coderslab.charity.validator;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Component;
@@ -11,9 +12,10 @@ import pl.coderslab.charity.service.CurrentUser;
 import pl.coderslab.charity.service.UserService;
 
 @Component
+@RequiredArgsConstructor
 public class UserValidator implements Validator {
-    @Autowired
-    private UserService userService;
+
+    final private UserService userService;
 
     @Override
     public boolean supports(Class<?> aClass) {
