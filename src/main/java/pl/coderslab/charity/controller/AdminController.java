@@ -137,7 +137,7 @@ public class AdminController {
 
     @GetMapping("/user/delete/{id}")
     public String userDelete(@PathVariable long id) {
-        User user = userRepository.findById(id).get();
+        User user = userRepository.findById(id);
         userRepository.delete(user);
         return "redirect:/admin/users";
     }

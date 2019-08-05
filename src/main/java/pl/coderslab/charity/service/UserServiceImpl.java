@@ -22,14 +22,6 @@ public class UserServiceImpl implements UserService {
 
     final private BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository,
-                           RoleRepository roleRepository,
-                           BCryptPasswordEncoder passwordEncoder){
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-    }
-
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -47,5 +39,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkIfValidOldPassword(final User user, final String oldPassword) {
         return passwordEncoder.matches(oldPassword, user.getPassword());
+    }
+
+    @Override
+    public void changeUserPassword(final User user, final String password) {
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
     }
 }

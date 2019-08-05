@@ -1,5 +1,7 @@
 package pl.coderslab.charity.controller;
 
+import org.hibernate.Session;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,5 +21,12 @@ public class LoginController {
 
     @PostMapping("/login")
     public String homePageAfterLogin() {
-        return "redirect:/donation"; }
+        return "redirect:/donation";
+    }
+
+    @GetMapping("/logout")
+    public String logoutPage() {
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return "redirect:/";
+        }
 }

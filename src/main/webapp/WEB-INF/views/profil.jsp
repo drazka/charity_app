@@ -19,6 +19,7 @@
 
 <section class="login-page">
     <h2>Twoje dane</h2>
+    <h3>UWAGA: po zmianie danych zostaniesz poproszony o ponowne zalogowanie się</h3>
     <form:form method="POST" modelAttribute="user" class="bg-light p-5 contact-form">
         <spring:bind path="firstName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -53,7 +54,6 @@
             </div>
         </spring:bind>
         <form:hidden name="userId" path="id"/>
-        <form:hidden path="password"/>
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Akceptuj zmiany</button>
             <a href="/password" class="btn">Zmień hasło</a>

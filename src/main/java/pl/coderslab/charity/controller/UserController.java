@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.service.CurrentUser;
 import pl.coderslab.charity.service.SecurityService;
 import pl.coderslab.charity.service.UserService;
@@ -27,6 +28,10 @@ public class UserController {
     private final UserService userService;
 
     private final SecurityService securityService;
+
+    private final UserRepository userRepository;
+
+
 
     @GetMapping("/register")
     public String registerPageShow(Model model) {
@@ -57,15 +62,16 @@ public class UserController {
 
     @PostMapping("/profil")
     public String profilPost(@ModelAttribute @Valid User user,
-                             BindingResult result) {
+                             BindingResult result,@AuthenticationPrincipal CurrentUser currentUser) {
         userValidator.validateUsername(user, result);
-        System.out.println("-----------/profil-------------");
-        System.out.println(user.getId());;
         if (result.hasErrors()) {
             return "login";
         }
-        userService.save(user);
-        return "index";
+        String userPass = currentUser.getUser().getPassword();
+        user.setPassword(userPass);
+        userRepository.save(user);
+        //TODO weryfikacja username
+        return "redirect:/logout";
     }
 
 
@@ -79,19 +85,25 @@ public class UserController {
     @PostMapping("/password")
     public String changePassPost(@ModelAttribute @Valid User user,
                                  BindingResult result,
+                                 @AuthenticationPrincipal CurrentUser currentUser,
                                  @RequestParam("oldPassword") String oldPassword) {
         System.out.println("-----------/oldpass-------------");
         System.out.println(oldPassword);
 
-        if (!userService.checkIfValidOldPassword(user, oldPassword)) {
+        if (!userService.checkIfValidOldPassword(currentUser.getUser(), oldPassword)) {
             return "password";
         }
         System.out.println("----------------hasła zgodne------------");
-        if (result.hasErrors()) {
-            return "password";
-        }
-        userService.save(user);
-        return "index";
+        System.out.println("----------------hasło nowe------------");
+        System.out.println(user.getPassword());
+        System.out.println("----------------hasło nowe2------------");
+        System.out.println(user.getPasswordConfirm());
+        userValidator.validatePassword(user, result);
+        userService.changeUserPassword(currentUser.getUser(),user.getPassword());
+        //TODO walidacja hasła
+        System.out.println("-----------------wer. okej-----------------");
+
+        return "redirect:/logout";
 
     }
 }
