@@ -89,8 +89,11 @@ public class UserController {
                                  @RequestParam("oldPassword") String oldPassword) {
         System.out.println("-----------/oldpass-------------");
         System.out.println(oldPassword);
-        userValidator.validatePassword(user, result);
 
+        if (!userService.checkIfValidOldPassword(user, oldPassword)) {
+            return "password";
+        }
+        System.out.println("----------------hasła zgodne------------");
         if (result.hasErrors()) {
             return "password";
         }

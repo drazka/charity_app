@@ -42,4 +42,9 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
+
+    @Override
+    public boolean checkIfValidOldPassword(final User user, final String oldPassword) {
+        return passwordEncoder.matches(oldPassword, user.getPassword());
+    }
 }

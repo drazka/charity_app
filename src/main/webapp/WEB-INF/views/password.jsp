@@ -18,7 +18,7 @@
 </header>
 
 <section class="login-page">
-    <h2>Twoje dane</h2>
+    <h2>Zmień hasło</h2>
     <form:form method="POST" modelAttribute="user" class="bg-light p-5 contact-form">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <input type="password" name="oldPassword" id="oldPassword" placeholder="Stare Hasło" >
