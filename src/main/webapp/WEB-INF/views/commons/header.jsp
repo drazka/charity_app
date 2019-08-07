@@ -25,7 +25,7 @@
                 <ul class="dropdown">
                     <li><a href="/profil">Profil</a></li>
                     <li><a href="/password">Zmiana hasła</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
+                    <li><a href="/donations">Moje zbiórki</a></li>
                     <li>
                         <form id="logoutForm" method="POST" action="${contextPath}/logout">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

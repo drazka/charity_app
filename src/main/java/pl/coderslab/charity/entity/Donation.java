@@ -41,4 +41,7 @@ public class Donation {
 
     private String telephoneNumber;
 
+    @ManyToOne
+    private User user;
+
 }
