@@ -18,6 +18,4 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     int countDistinctByInstitution();
 
     List<Donation> findDonationByUser(User user);
-
-    //List<Donation> findDonationByUser();
 }

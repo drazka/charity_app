@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
@@ -66,6 +67,12 @@ public class DonationController {
         List<Donation> userDonations = donationRepository.findDonationByUser(user);
         model.addAttribute("userDonations", userDonations);
         return "donations";
+    }
+
+    @GetMapping("/donationDetails/{id}")
+    public String donationGet(@PathVariable long id, Model model){
+        model.addAttribute("donation", donationRepository.findById(id));
+        return "donationDetails";
     }
 }
 
