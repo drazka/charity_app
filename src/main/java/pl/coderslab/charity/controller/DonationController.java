@@ -49,10 +49,12 @@ public class DonationController {
 
     @PostMapping("/donation")
     public String formPost(@ModelAttribute @Valid Donation donation,
-                           BindingResult result){
+                           BindingResult result,@AuthenticationPrincipal CurrentUser currentUser){
         if (result.hasErrors()) {
             return "form";
         }
+        User user = currentUser.getUser();
+        donation.setUser(user);
         donation.getCategories().forEach(c->c.getDonations().add(donation));
         donationRepository.save(donation);
         return "form-confirmation";
