@@ -12,6 +12,26 @@
 <body>
 <header class="header--main-page">
 <%@ include file="/WEB-INF/views/commons/header.jsp" %>
+    <c:if test="${pageContext.request.userPrincipal.name == null}">
+        <div class="slogan container container--90">
+            <div class="slogan--item">
+                <h1>
+                    Zacznij pomagać!<br/>
+                    Oddaj niechciane rzeczy w zaufane ręce
+                </h1>
+            </div>
+        </div>
+    </c:if>
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+        <div class="slogan container container--90">
+            <div class="slogan--item">
+                <h1>
+                    Oddaj rzeczy, których już nie chcesz<br />
+                    <span class="uppercase">potrzebującym</span>
+                </h1>
+            </div>
+        </div>
+    </c:if>
 </header>
 
 <section id="start" class="stats">

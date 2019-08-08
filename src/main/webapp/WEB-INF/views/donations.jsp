@@ -10,28 +10,21 @@
 <html lang="pl">
 <head>
     <%@ include file="/WEB-INF/views/commons/style.jsp" %>
+    <link rel="stylesheet" href="<c:url value="/resources/css/sb-admin-2.min.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+
 </head>
 <body>
 <header>
     <%@ include file="/WEB-INF/views/commons/header.jsp" %>
+
+
 </header>
 
 <section class="login-page">
     <h2>Moje zbiórki</h2>
 
-    <div id="wrapper">
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800"></h1>
 
         <!-- DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the https://datatables.net -->
         <!-- DataTales Example -->
@@ -119,15 +112,11 @@
             </div>
         </div>
 
-    </div>
-    <!-- /.container-fluid -->
 
-            </div>
-        </div>
-    </div>
 
 </section>
 
 <%@ include file="/WEB-INF/views/commons/footer.jsp" %>
+<%@ include file="/WEB-INF/views/admin/commons/javaS.jsp" %>
 </body>
 </html>
