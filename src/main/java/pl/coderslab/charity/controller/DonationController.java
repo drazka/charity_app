@@ -62,7 +62,7 @@ public class DonationController {
     public String formGetUserDonation(Model model, @AuthenticationPrincipal CurrentUser currentUser){
         User user = currentUser.getUser();
         List<Donation> userDonations = donationRepository.findDonationByUser(user);
-        model.addAttribute(userDonations);
+        model.addAttribute("userDonations", userDonations);
         return "donations";
     }
 }

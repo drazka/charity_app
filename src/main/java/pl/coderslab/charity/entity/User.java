@@ -1,6 +1,7 @@
 package pl.coderslab.charity.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -34,6 +35,7 @@ public class User {
 
     private int enabled;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "user")
     private Set<Donation> donations;
 
