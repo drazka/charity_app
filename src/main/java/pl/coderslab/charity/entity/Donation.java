@@ -47,12 +47,23 @@ public class Donation {
 
     private boolean given;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate givenDate;
+
     @Column(name = "created")
     private LocalDateTime created;
+
+    @Column(name = "updated")
+    private LocalDateTime updated;
 
     @PrePersist
     public void prePersist() {
         created = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updated = LocalDateTime.now();
     }
 
 }

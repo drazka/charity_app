@@ -32,12 +32,14 @@
                 </h1>
                 <h1> Ilość przekazanych worków: ${donation.quantity} <br>
                     Nazwa instytucji: ${donation.institution.name}<br>
+                    Data utworzenia wpisu: ${donation.created}<br>
                     Zawartość:
                     <c:forEach items="${donation.categories}" var="category">
                         <li>${category.name}</li>
 
                     </c:forEach>
                     Przekazane: ${donation.given}<br>
+                    Data przekazania: ${donation.givenDate}<br>
                 </h1>
                 <h2>
                     <a href="/donationDetails/${donation.id}/edit">Edytuj</a>
