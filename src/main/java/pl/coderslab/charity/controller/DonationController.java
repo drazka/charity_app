@@ -71,8 +71,14 @@ public class DonationController {
 
     @GetMapping("/donationDetails/{id}")
     public String donationGet(@PathVariable long id, Model model){
-        model.addAttribute("donation", donationRepository.findById(id));
+        model.addAttribute("donation", donationRepository.findById(id).get());
         return "donationDetails";
+    }
+
+    @GetMapping("/donationDetails/{id}/edit")
+    public String givenGet(@PathVariable long id, Model model){
+        model.addAttribute("donation", donationRepository.findById(id).get());
+        return "donationDetailsEdit";
     }
 }
 

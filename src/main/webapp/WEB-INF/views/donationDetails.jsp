@@ -29,8 +29,19 @@
             <div class="slogan--item">
                 <h1>
                     informacja o darze
-                    ${donation}
                 </h1>
+                <h1> Ilość przekazanych worków: ${donation.quantity} <br>
+                    Nazwa instytucji: ${donation.institution.name}<br>
+                    Zawartość:
+                    <c:forEach items="${donation.categories}" var="category">
+                        <li>${category.name}</li>
+
+                    </c:forEach>
+                    Przekazane: ${donation.given}<br>
+                </h1>
+                <h2>
+                    <a href="/donationDetails/${donation.id}/edit">Edytuj</a>
+                </h2>
             </div>
         </div>
     </c:if>
