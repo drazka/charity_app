@@ -1,15 +1,11 @@
 package pl.coderslab.charity.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
@@ -20,7 +16,13 @@ import pl.coderslab.charity.repository.InstitutionRepository;
 import pl.coderslab.charity.service.CurrentUser;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequiredArgsConstructor
@@ -79,6 +81,19 @@ public class DonationController {
     public String givenGet(@PathVariable long id, Model model){
         model.addAttribute("donation", donationRepository.findById(id).get());
         return "donationDetailsEdit";
+    }
+
+    @PostMapping("/donationDetails/{id}/edit")
+    public String givenPost(@ModelAttribute @Valid Donation donationNewData, @PathVariable long id, Model model,
+                            @RequestParam("givenD") String ldt) throws ParseException {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(ldt);
+        Donation donation = donationRepository.findById(id).get();
+        donation.setGivenDate(date);
+        donation.setGiven(donationNewData.isGiven());
+        donationRepository.save(donation);
+        model.addAttribute("donation", donation);
+        return "donationDetails";
     }
 }
 

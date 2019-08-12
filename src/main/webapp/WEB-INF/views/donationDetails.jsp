@@ -40,7 +40,7 @@
 
                     </c:forEach>
                     Przekazane: ${donation.given}<br>
-                    Data przekazania: <tags:localDate date="${donation.givenDate}" pattern="dd-MMM-yyyy HH:mm"/> <br>
+                    Data przekazania: <fmt:formatDate value="${donation.givenDate}" pattern="dd-MMM-yyyy"/> <br>
                 </h1>
                 <h2>
                     <a href="/donationDetails/${donation.id}/edit">Edytuj</a>

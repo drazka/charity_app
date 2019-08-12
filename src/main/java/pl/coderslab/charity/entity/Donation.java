@@ -48,7 +48,6 @@ public class Donation {
 
     private boolean given;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date givenDate;
 
     @Column(name = "created")

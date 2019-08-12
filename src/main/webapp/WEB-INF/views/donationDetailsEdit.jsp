@@ -41,11 +41,12 @@
                     <div>
                         <form:checkbox path="given" cssStyle="zoom: 3.5"/>
                         Przekazane <br>
-                        Data przekazania: <form:input path="givenDate" /> <br>
+                        Data przekazania: <input type="date" name="givenD" /> <br>
                         <!--TODO dodaj format daty albo bootstrap-->
                         <button type="submit" class="btn btnWhite">Zapisz</button>
 
                         </div>
+                        <form:hidden path="id"></form:hidden>
                     </form:form>
                 </h1>
             </div>
