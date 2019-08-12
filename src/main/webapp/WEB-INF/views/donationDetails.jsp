@@ -5,6 +5,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -32,14 +33,14 @@
                 </h1>
                 <h1> Ilość przekazanych worków: ${donation.quantity} <br>
                     Nazwa instytucji: ${donation.institution.name}<br>
-                    Data utworzenia wpisu: ${donation.created}<br>
+                    Data utworzenia wpisu:<tags:localDate date="${donation.created}" pattern="dd-MMM-yyyy"/> <br>
                     Zawartość:
                     <c:forEach items="${donation.categories}" var="category">
                         <li>${category.name}</li>
 
                     </c:forEach>
                     Przekazane: ${donation.given}<br>
-                    Data przekazania: ${donation.givenDate}<br>
+                    Data przekazania: <tags:localDate date="${donation.givenDate}" pattern="dd-MMM-yyyy HH:mm"/> <br>
                 </h1>
                 <h2>
                     <a href="/donationDetails/${donation.id}/edit">Edytuj</a>

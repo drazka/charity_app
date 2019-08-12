@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,7 +35,7 @@ public class Donation {
     private String zipCode;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate pickUpDate;
+    private Date pickUpDate;
 
     private LocalTime pickUpTime;
 
@@ -48,7 +49,7 @@ public class Donation {
     private boolean given;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate givenDate;
+    private Date givenDate;
 
     @Column(name = "created")
     private LocalDateTime created;
