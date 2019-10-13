@@ -1,6 +1,7 @@
 package pl.coderslab.charity.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,13 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.service.CurrentUser;
+import pl.coderslab.charity.service.OnRegistrationCompleteEvent;
 import pl.coderslab.charity.service.SecurityService;
 import pl.coderslab.charity.service.UserService;
 import pl.coderslab.charity.validator.UserValidator;
 
+import javax.jws.WebResult;
 import javax.validation.Valid;
 
 
@@ -31,7 +35,7 @@ public class UserController {
 
     private final UserRepository userRepository;
 
-
+    private final ApplicationEventPublisher eventPublisher;
 
     @GetMapping("/register")
     public String registerPageShow(Model model) {
@@ -40,14 +44,21 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerPagePost(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+    public String registerPagePost(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, WebRequest request) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "register";
         }
-
         userService.save(userForm);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+
+        try {
+            String appUrl = request.getContextPath();
+            eventPublisher.publishEvent(new OnRegistrationCompleteEvent
+                    (userForm, request.getLocale(), appUrl));
+        } catch (Exception me) {
+            return "register";
+        }
         return "redirect:/donation";
     }
 

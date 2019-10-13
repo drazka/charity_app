@@ -33,10 +33,15 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
-    private int enabled;
+    private boolean enabled;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user")
     private Set<Donation> donations;
+
+    public User() {
+        super();
+        this.enabled=false;
+    }
 
 }

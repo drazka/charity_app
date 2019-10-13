@@ -2,6 +2,7 @@ package pl.coderslab.charity.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Role;
@@ -22,6 +23,8 @@ public class UserServiceImpl implements UserService {
 
     final private BCryptPasswordEncoder passwordEncoder;
 
+    final private ApplicationEventPublisher eventPublisher;
+
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -30,9 +33,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEnabled(1);
         Role userRole = roleRepository.findByName("ROLE_USER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
 
