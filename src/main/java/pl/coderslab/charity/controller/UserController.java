@@ -2,6 +2,7 @@ package pl.coderslab.charity.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.entity.VerificationToken;
 import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.service.CurrentUser;
 import pl.coderslab.charity.service.OnRegistrationCompleteEvent;
@@ -19,8 +21,9 @@ import pl.coderslab.charity.service.SecurityService;
 import pl.coderslab.charity.service.UserService;
 import pl.coderslab.charity.validator.UserValidator;
 
-import javax.jws.WebResult;
 import javax.validation.Valid;
+import java.util.Calendar;
+import java.util.Locale;
 
 
 @Controller
@@ -36,6 +39,8 @@ public class UserController {
     private final UserRepository userRepository;
 
     private final ApplicationEventPublisher eventPublisher;
+
+    private final MessageSource messages;
 
     @GetMapping("/register")
     public String registerPageShow(Model model) {
@@ -61,6 +66,31 @@ public class UserController {
         }
         return "redirect:/donation";
     }
+
+    @GetMapping("/registrationConfirm")
+    public String confirmRegistration(WebRequest request, Model model, @RequestParam("token") String token) {
+        Locale locale = request.getLocale();
+
+        VerificationToken verificationToken = userService.getVerificationToken(token);
+        if(verificationToken == null) {
+            String message = messages.getMessage("auth.message.invalidToken",null,locale);
+            model.addAttribute("message", message);
+            return "redirect:/badUser.html?lang=" + locale.getLanguage();
+        }
+
+        User user = verificationToken.getUser();
+        Calendar calendar = Calendar.getInstance();
+        if ((verificationToken.getExpiryDate().getTime() - calendar.getTime().getTime()) <= 0) {
+            String messageValue = messages.getMessage("auth.message.expired",null,locale);
+            model.addAttribute("message", messageValue);
+            return "redirect:/badUser.html?lang=" + locale.getLanguage();
+        }
+        user.setEnabled(true);
+        //------ponizej do sprawdzenia --------TODO
+        userService.save(user);
+        return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
+    }
+
 
     @GetMapping("/profil")
     public String profilPageShow(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
