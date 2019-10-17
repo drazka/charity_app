@@ -54,16 +54,17 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-        userService.save(userForm);
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        try {
+        //try {
             String appUrl = request.getContextPath();
+
             eventPublisher.publishEvent(new OnRegistrationCompleteEvent
                     (userForm, request.getLocale(), appUrl));
-        } catch (Exception me) {
-            return "register";
-        }
+        //} catch (Exception me) {
+        //    return "register";
+        //}
+        userService.save(userForm);
+        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/donation";
     }
 

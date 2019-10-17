@@ -1,27 +1,35 @@
 package pl.coderslab.charity.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.User;
 
 import java.util.UUID;
 
+@Service
+@RequiredArgsConstructor
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
 
-    @Autowired
+    //@Autowired
     private UserServiceImpl userService;
 
-    @Autowired
+    //@Autowired
     private MessageSource messageSource;
 
-    @Autowired
+    //@Autowired
     private JavaMailSender mailSender;
 
     @Override
-    public void onApplicationEvent(OnRegistrationCompleteEvent onRegistrationCompleteEvent) {
+    public void onApplicationEvent(OnRegistrationCompleteEvent event) {
+        this.confirmRegistration(event);
+    }
+
+
+    private void confirmRegistration(OnRegistrationCompleteEvent onRegistrationCompleteEvent) {
         User user = onRegistrationCompleteEvent.getUserForm();
         String token = UUID.randomUUID().toString();
         userService.createVerificationToken(user, token);
