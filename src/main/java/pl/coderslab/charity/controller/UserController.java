@@ -61,7 +61,7 @@ public class UserController {
             eventPublisher.publishEvent(new OnRegistrationCompleteEvent
                     (userForm, request.getLocale(), appUrl));
         //} catch (Exception me) {
-        //    return "register";
+        //   return "register";
         //}
         userService.save(userForm);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());

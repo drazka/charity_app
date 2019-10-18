@@ -1,6 +1,7 @@
 package pl.coderslab.charity.entity;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 @Entity
 @Data
+@RequiredArgsConstructor
 public class VerificationToken {
     private static final int EXPIRATION = 60 * 24;
 
@@ -24,6 +26,9 @@ public class VerificationToken {
 
     private Date expiryDate;
 
+
+    public VerificationToken(User user, String token) {}
+
     public VerificationToken(String token, User user) {
     }
 
@@ -34,4 +39,8 @@ public class VerificationToken {
         return new Date(cal.getTime().getTime());
     }
 
+    @PrePersist
+    public void prePersist() {
+        expiryDate = calculateExpiryDate(EXPIRATION);
+    }
 }

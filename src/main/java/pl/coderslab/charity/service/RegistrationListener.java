@@ -1,26 +1,30 @@
 package pl.coderslab.charity.service;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.MessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import pl.coderslab.charity.entity.User;
 
 import java.util.UUID;
 
-@Service
-@RequiredArgsConstructor
+@Component
+//@RequiredArgsConstructor
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
 
-    //@Autowired
-    private UserServiceImpl userService;
+    @Autowired
+    private UserService userService;
 
-    //@Autowired
+    @Autowired
     private MessageSource messageSource;
 
-    //@Autowired
+    @Autowired
+    private Environment env;
+
+    @Autowired
     private JavaMailSender mailSender;
 
     @Override
@@ -29,22 +33,23 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     }
 
 
-    private void confirmRegistration(OnRegistrationCompleteEvent onRegistrationCompleteEvent) {
-        User user = onRegistrationCompleteEvent.getUserForm();
+    private void confirmRegistration(final OnRegistrationCompleteEvent event) {
+        User user = event.getUserForm();
         String token = UUID.randomUUID().toString();
         userService.createVerificationToken(user, token);
 
         String recipientAddress = user.getEmail();
         String subject = "REGISTRATION CONFIRMATION";
-        String confirmationUrl = onRegistrationCompleteEvent.getAppUrl() +
+        String confirmationUrl = event.getAppUrl() +
                 "/registrationConfirm.html?token=" + token;
         String message = messageSource
-                .getMessage("message.regSucc",null, onRegistrationCompleteEvent.getLocale());
+                .getMessage("message.regSucc",null, event.getLocale());
 
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(recipientAddress);
         email.setSubject(subject);
         email.setText(message + "rn" + "http://localhost:8080" +confirmationUrl);
+        email.setFrom(env.getProperty("support.email"));
         mailSender.send(email);
     }
 }
