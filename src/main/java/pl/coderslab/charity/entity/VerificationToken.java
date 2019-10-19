@@ -31,6 +31,9 @@ public class VerificationToken {
     //public VerificationToken(User user, String token) {}
 
     public VerificationToken(String token, User user) {
+        this.token = token;
+        this.user = user;
+
     }
 
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
