@@ -15,7 +15,7 @@ public class VerificationToken {
     private static final int EXPIRATION = 60 * 24;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String token;
@@ -24,10 +24,11 @@ public class VerificationToken {
     @JoinColumn(nullable = false, name = "id")
     private User user;
 
+    @Column(name = "expiryDate")
     private Date expiryDate;
 
 
-    public VerificationToken(User user, String token) {}
+    //public VerificationToken(User user, String token) {}
 
     public VerificationToken(String token, User user) {
     }
