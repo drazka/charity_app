@@ -39,6 +39,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Donation> donations;
 
+//    @OneToOne(mappedBy = "user")
+//    private VerificationToken verificationToken;
+
     public User() {
         super();
         this.enabled=false;

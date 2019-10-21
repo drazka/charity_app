@@ -54,7 +54,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "register";
         }
-
+        userService.save(userForm);
         //try {
             String appUrl = request.getContextPath();
 
@@ -63,7 +63,7 @@ public class UserController {
         //} catch (Exception me) {
         //   return "register";
         //}
-        userService.save(userForm);
+
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/donation";
     }
