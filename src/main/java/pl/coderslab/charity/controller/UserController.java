@@ -76,7 +76,7 @@ public class UserController {
         if(verificationToken == null) {
             String message = messages.getMessage("auth.message.invalidToken",null,locale);
             model.addAttribute("message", message);
-            return "redirect:/badUser.html?lang=" + locale.getLanguage();
+            return "redirect:/badUser";
         }
 
         User user = verificationToken.getUser();
@@ -84,12 +84,11 @@ public class UserController {
         if ((verificationToken.getExpiryDate().getTime() - calendar.getTime().getTime()) <= 0) {
             String messageValue = messages.getMessage("auth.message.expired",null,locale);
             model.addAttribute("message", messageValue);
-            return "redirect:/badUser.html?lang=" + locale.getLanguage();
+            return "redirect:/badUser";
         }
         user.setEnabled(true);
-        //------ponizej do sprawdzenia --------TODO
         userService.save(user);
-        return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
+        return "confirmRegistration";
     }
 
 

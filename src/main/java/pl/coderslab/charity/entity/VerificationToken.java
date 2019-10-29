@@ -39,6 +39,9 @@ public class VerificationToken {
 
     }
 
+    public VerificationToken() {
+    }
+
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Timestamp(cal.getTime().getTime()));
